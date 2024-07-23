@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+// Function to check the strength of the password
+int check_password_strength(const char *password) 
+{
+    int length = strlen(password);  // Get the length of the password
+    int has_upper = 0, has_lower = 0, has_digit = 0, has_special = 0;  // Initialize flags for character types
+    const char *special_chars = "!@#$%^&*()-+";  // Define special characters
+
+    // Loop through each character in the password
+    for (int i = 0; i < length; i++) {
+        if (isupper(password[i])) has_upper = 1;  // Check for uppercase letters
+        else if (islower(password[i])) has_lower = 1;  // Check for lowercase letters
+        else if (isdigit(password[i])) has_digit = 1;  // Check for digits
+        else if (strchr(special_chars, password[i])) has_special = 1;  // Check for special characters
+    }
+
+    // Calculate the score based on the length and presence of character types
+    int score = length + has_upper + has_lower + has_digit + has_special;
+
+    return score;  // Return the calculated score
+}
+
+// Function to provide feedback based on the password score
+void provide_feedback(int score) 
+{
+    if (score < 8) 
+    {
+        printf("Password is weak.\n");  // Feedback for weak passwords
+    } 
+    else if (score < 12) 
+    {
+        printf("Password is moderate.\n");  // Feedback for moderate passwords
+    } 
+    else 
+    {
+        printf("Password is strong.\n");  // Feedback for strong passwords
+    }
+}
+
+int main() 
+{
+    char password[100];  // Declare a char array to store the password
+    printf("Enter your password: ");
+    scanf("%99s", password);  // Read the password input from the user
+
+    int score = check_password_strength(password);  // Check the strength of the password
+    printf("Password Score: %d\n", score);  // Print the password score
+    provide_feedback(score);  // Provide feedback based on the score
+
+    return 0;  // End of the program
+}
