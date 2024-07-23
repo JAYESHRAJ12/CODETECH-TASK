@@ -41,5 +41,7 @@ Enhances overall cybersecurity by promoting better password practices.
 
 
 Here is the supporting document referring to the output of the given task.
+
+
 ![image](https://github.com/user-attachments/assets/12a050b1-695a-4935-a64f-06d88c04404c)
 
